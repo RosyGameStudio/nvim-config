@@ -30,6 +30,7 @@ vim.keymap.set('n', '[d', vim.diagnostic.goto_prev, { desc = 'Previous diagnosti
 vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' })
 vim.keymap.set('n', '<leader>ga', vim.lsp.buf.code_action, { desc = 'Code action' })
 vim.keymap.set('n', '<leader>gd', vim.lsp.buf.type_definition, { desc = 'Type definition' })
+vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, { desc = 'Go to implementation' })
 
 -- nvim-tree
 
@@ -59,3 +60,7 @@ end, { desc = 'Open C language docs' })
 vim.keymap.set('n', '<leader>hb', function()
   vim.fn.system('start https://learn.microsoft.com/en-us/cpp/build/reference/compiler-command-line-syntax?view=msvc-170')
 end, { desc = 'Open CL docs' })
+
+vim.keymap.set('n', '<leader>hs', function()
+  vim.fn.system('start https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3220.pdf')
+end, { desc = 'Open C Spec' })
