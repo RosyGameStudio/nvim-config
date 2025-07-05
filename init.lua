@@ -14,7 +14,7 @@ require("config.lazy")
 vim.lsp.enable('clangd')
 
 -- general
---
+
 vim.keymap.set('n', '<leader>es', function()
     vim.cmd('edit ' .. vim.fn.stdpath('config') .. '/init.lua')
 end, { desc = 'Edit Neovim settings' })
