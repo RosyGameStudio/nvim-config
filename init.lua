@@ -15,16 +15,24 @@ vim.lsp.enable('clangd')
 
 -- general
 
+-- open settings
 vim.keymap.set('n', '<leader>es', function()
     vim.cmd('edit ' .. vim.fn.stdpath('config') .. '/init.lua')
 end, { desc = 'Edit Neovim settings' })
+
 vim.keymap.set(
     'n', '<leader>er',
     '<cmd>source ' .. vim.fn.stdpath('config') .. '/init.lua<cr>', 
     { desc = 'Reload settings' })
+
 for i = 1, 9 do
   vim.keymap.set('n', '<leader>' .. i, '<Cmd>BufferGoto ' .. i .. '<CR>', { desc = 'Go to buffer ' .. i })
 end
+
+vim.keymap.set('n', '<Esc>', function()
+  vim.cmd('nohl')
+  return '<Esc>'
+end, { expr = true })
 
 -- lsp
 
