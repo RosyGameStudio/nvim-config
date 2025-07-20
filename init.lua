@@ -1,3 +1,5 @@
+-- my modules
+require("build_helper")
 -- for nvim-tree, disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
@@ -12,6 +14,22 @@ vim.opt.termguicolors = true
 require("config.lazy")
 
 vim.lsp.enable('clangd')
+vim.lsp.config('slangd', {
+  cmd = {'slangd'},
+  filetypes = {'hlsl', 'shaderslang'},
+  root_markers = {'.git'},
+  settings = {
+    slang = {
+      predefinedMacros = {"MY_VALUE_MACRO=1"},
+      inlayHints = {
+        deducedTypes = true,
+        parameterNames = true,
+      }
+    }
+  }
+})
+
+vim.lsp.enable('slangd')
 
 -- general
 
@@ -22,7 +40,7 @@ end, { desc = 'Edit Neovim settings' })
 
 vim.keymap.set(
     'n', '<leader>er',
-    '<cmd>source ' .. vim.fn.stdpath('config') .. '/init.lua<cr>', 
+    '<cmd>source ' .. vim.fn.stdpath('config') .. '/init.lua<cr>',
     { desc = 'Reload settings' })
 
 for i = 1, 9 do
@@ -55,8 +73,8 @@ vim.keymap.set('n', '<leader>tv', ':vsplit | terminal<CR>', { desc = 'Open termi
 
 --build & debug
 
-vim.keymap.set('n', '<F5>', ':!build.bat<CR>', { desc = 'Run build.bat' })
-vim.keymap.set('n', '<S-F5>', ':!debug.bat<CR>', { desc = 'Run debug.bat' })
+-- vim.keymap.set('n', '<F5>', ':!build.bat<CR>', { desc = 'Run build.bat' })
+-- vim.keymap.set('n', '<S-F5>', ':!debug.bat<CR>', { desc = 'Run debug.bat' })
 
 -- docs
 
@@ -75,3 +93,12 @@ end, { desc = 'Open CL docs' })
 vim.keymap.set('n', '<leader>hs', function()
   vim.fn.system('start https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3220.pdf')
 end, { desc = 'Open C Spec' })
+
+-- autocmds
+
+-- clean trailing whitespace
+vim.api.nvim_create_autocmd({ "BufWritePre" }, {
+  pattern = { "*" },
+  command = [[%s/\s\+$//e]],
+})
+
