@@ -14,6 +14,9 @@ vim.opt.termguicolors = true
 require("config.lazy")
 
 vim.lsp.enable('clangd')
+vim.lsp.enable('slangd')
+vim.lsp.enable('gopls')
+
 vim.lsp.config('slangd', {
   cmd = {'slangd'},
   filetypes = {'hlsl', 'shaderslang'},
@@ -29,7 +32,20 @@ vim.lsp.config('slangd', {
   }
 })
 
-vim.lsp.enable('slangd')
+vim.lsp.config('gopls', {
+  cmd = {'gopls'},
+  filetypes = {'go', 'gomod', 'gowork', 'gotmpl'},
+  root_markers = {'go.work', 'go.mod', '.git'},
+  settings = {
+    gopls = {
+      analyses = {
+        unusedparams = true,
+      },
+      staticcheck = true,
+      gofumpt = true,
+    }
+  }
+})
 
 -- general
 
