@@ -1,6 +1,11 @@
 return {
 	'nvim-telescope/telescope.nvim', tag = '0.1.8',
 	dependencies = { 'nvim-lua/plenary.nvim' },
+    file_ignore_patterns = {
+        "vendor/.*",
+        "node_modules/.*",
+        "%.git/.*",
+    },
 
 	config = function()
 		require("telescope").setup()
