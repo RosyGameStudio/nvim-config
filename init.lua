@@ -16,7 +16,18 @@ require("config.lazy")
 vim.lsp.enable('clangd')
 vim.lsp.enable('slangd')
 vim.lsp.enable('gopls')
+vim.lsp.enable('lua')
+vim.lsp.enable('python')
 
+-- Set LSP log level to reduce verbosity
+vim.lsp.set_log_level("warn")  -- Options: "trace", "debug", "info", "warn", "error", "off"
+
+-- we don't need perl or ruby
+vim.g.loaded_perl_provider = 0
+vim.g.loaded_ruby_provider = 0
+
+vim.lsp.config('python', {});
+vim.lsp.config('lua', {});
 vim.lsp.config('slangd', {
   cmd = {'slangd'},
   filetypes = {'hlsl', 'shaderslang'},
