@@ -7,7 +7,7 @@ return {
       -- Customize or remove this keymap to your liking
       "<leader>cf",
       function()
-        require("conform").format({ async = true })
+        require("conform").format({ bufnr = vim.api.nvim_get_current_buf(), async = true })
       end,
       mode = "",
       desc = "Format buffer",
@@ -18,11 +18,6 @@ return {
   ---@type conform.setupOpts
   opts = {
     -- Define your formatters
-    formatters_by_ft = {
-      lua = { "stylua" },
-      python = { "isort", "black" },
-      javascript = { "prettierd", "prettier", stop_after_first = true },
-    },
     -- Set default options
     default_format_opts = {
       lsp_format = "fallback",
