@@ -8,6 +8,7 @@ return {
                 file_ignore_patterns = {
                     "vendor/.*",
                     "node_modules/.*",
+                    "SPIRV-Headers/",
                     "%.git/.*",
                 },
             },

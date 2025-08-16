@@ -3,6 +3,11 @@ require("build_helper")
 -- for nvim-tree, disable netrw
 vim.g.loaded_netrw = 1
 vim.g.loaded_netrwPlugin = 1
+vim.g.editorconfig = true
+
+-- local configs
+vim.opt.exrc = true
+vim.opt.secure = false
 
 -- tabs
 vim.opt.tabstop = 4
@@ -12,12 +17,24 @@ vim.opt.expandtab = true
 
 vim.opt.termguicolors = true
 require("config.lazy")
+require("neoconf").setup({
+})
 
 vim.lsp.enable('clangd')
 vim.lsp.enable('slangd')
 vim.lsp.enable('gopls')
 vim.lsp.enable('lua')
 vim.lsp.enable('python')
+
+-- c indentation fixes
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "c",
+  callback = function()
+    vim.opt_local.indentexpr = ""
+    vim.opt_local.cindent = true
+    vim.opt_local.cinoptions = ":0,l1"
+  end
+})
 
 -- Set LSP log level to reduce verbosity
 vim.lsp.set_log_level("warn")  -- Options: "trace", "debug", "info", "warn", "error", "off"
@@ -26,8 +43,9 @@ vim.lsp.set_log_level("warn")  -- Options: "trace", "debug", "info", "warn", "er
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
-vim.lsp.config('python', {});
-vim.lsp.config('lua', {});
+vim.diagnostic.config({ jump = { float = true }})
+vim.lsp.config('python', {})
+vim.lsp.config('lua', {})
 vim.lsp.config('slangd', {
   cmd = {'slangd'},
   filetypes = {'hlsl', 'shaderslang'},
@@ -87,10 +105,14 @@ vim.keymap.set('n', ']d', vim.diagnostic.goto_next, { desc = 'Next diagnostic' }
 vim.keymap.set('n', '<leader>ga', vim.lsp.buf.code_action, { desc = 'Code action' })
 vim.keymap.set('n', '<leader>gd', vim.lsp.buf.type_definition, { desc = 'Type definition' })
 vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, { desc = 'Go to implementation' })
+vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, { desc = 'Go to implementation' })
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
 
 -- nvim-tree
 
 vim.keymap.set('n', '<leader>no', ':NvimTreeToggle<CR>', { desc = 'Toggle file explorer' })
+vim.keymap.set('n', '<leader>nf', ':NvimTreeFindFileToggle<CR>', { desc = 'Toggle file explorer' })
 
 -- terminal mode
 

@@ -8,15 +8,16 @@ return {
             prefer_git = false,
             compilers = { "cl" },
             ensure_installed = { "c", "cpp", "lua" },
-            
+
             highlight = {
                 enable = true,
             },
-            
+
             indent = {
                 enable = true,
+                disable = {"c"},
             },
-            
+
             incremental_selection = {
                 enable = true,
                 keymaps = {
