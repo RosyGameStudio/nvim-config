@@ -123,6 +123,28 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 vim.keymap.set('n', '<leader>th', ':split | terminal<CR>', { desc = 'Open terminal in horizontal split' })
 vim.keymap.set('n', '<leader>tv', ':vsplit | terminal<CR>', { desc = 'Open terminal in vertical split' })
 
+-- telescope
+
+
+local t_builtin = require('telescope.builtin')
+vim.keymap.set('n', '<leader>ff', t_builtin.find_files, { desc = 'Telescope find files' })
+vim.keymap.set('n', '<leader>fg', t_builtin.live_grep, { desc = 'Telescope live grep' })
+vim.keymap.set('n', '<leader>fb', t_builtin.buffers, { desc = 'Telescope buffers' })
+vim.keymap.set('n', '<leader>fh', t_builtin.help_tags, { desc = 'Telescope help tags' })
+
+vim.keymap.set('n', '<leader>lr', t_builtin.lsp_references, { desc = 'Telescope lsp references' })
+vim.keymap.set('n', '<leader>ld', t_builtin.lsp_definitions, { desc = 'Telescope lsp definitions' })
+vim.keymap.set('n', '<leader>lt', t_builtin.lsp_type_definitions, { desc = 'Telescope lsp type definitions' })
+vim.keymap.set('n', '<leader>li', t_builtin.lsp_implementations, { desc = 'Telescope lsp implementations' })
+
+vim.keymap.set('n', '<leader>f?', t_builtin.search_history, { desc = 'Telescope search history' })
+
+vim.keymap.set('n', '<leader>vs', t_builtin.git_status, { desc = 'Telescope git status' })
+
+vim.keymap.set('n', '<leader>bf', t_builtin.current_buffer_fuzzy_find, { desc = 'Telescope current buffer fuzzy find' })
+
+vim.keymap.set('n', '<leader>ch', t_builtin.command_history, { desc = 'Telescope command history' })
+
 --build & debug
 
 -- vim.keymap.set('n', '<F5>', ':!build.bat<CR>', { desc = 'Run build.bat' })
