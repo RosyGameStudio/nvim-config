@@ -130,6 +130,10 @@ vim.keymap.set('n', '\'', '<Cmd>BufferNext<CR>', opts);
 vim.keymap.set('n', '<A-;>', '<Cmd>BufferMovePrevious<CR>', opts);
 vim.keymap.set('n', '<A-\'>', '<Cmd>BufferMoveNext<CR>', opts);
 
+-- split
+
+vim.keymap.set('n', '<leader>sh', ':split<CR>', { desc = 'Open terminal in horizontal split' })
+vim.keymap.set('n', '<leader>sv', ':vsplit<CR>', { desc = 'Open terminal in vertical split' })
 
 -- telescope
 
