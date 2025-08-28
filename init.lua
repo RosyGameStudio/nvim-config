@@ -123,8 +123,15 @@ vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
 vim.keymap.set('n', '<leader>th', ':split | terminal<CR>', { desc = 'Open terminal in horizontal split' })
 vim.keymap.set('n', '<leader>tv', ':vsplit | terminal<CR>', { desc = 'Open terminal in vertical split' })
 
--- telescope
+-- tabs
 
+vim.keymap.set('n', ';', '<Cmd>BufferPrevious<CR>', opts);
+vim.keymap.set('n', '\'', '<Cmd>BufferNext<CR>', opts);
+vim.keymap.set('n', '<A-;>', '<Cmd>BufferMovePrevious<CR>', opts);
+vim.keymap.set('n', '<A-\'>', '<Cmd>BufferMoveNext<CR>', opts);
+
+
+-- telescope
 
 local t_builtin = require('telescope.builtin')
 vim.keymap.set('n', '<leader>ff', t_builtin.find_files, { desc = 'Telescope find files' })
