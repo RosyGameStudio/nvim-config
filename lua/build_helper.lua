@@ -1,6 +1,6 @@
 print("Hello!")
 
-local function find_and_run_path(p)
+local function find_and_run_path(p, mode)
     local found = false
     local search_path = vim.fn.getcwd()
     local max_iterations = 10
@@ -19,7 +19,7 @@ local function find_and_run_path(p)
             found = true
 
             vim.cmd('cd ' .. vim.fn.fnameescape(search_path))
-            vim.cmd('!' .. p)
+            vim.cmd('!' .. p .. " " .. mode)
 
             break
         else
@@ -43,15 +43,27 @@ local function find_and_run_path(p)
      end
 end
 
-local function run_build()
+local function run_build_debug()
     print("F5 pressed!")
-    find_and_run_path("build.bat")
+    find_and_run_path("build.bat", "DEBUG")
+end
+
+local function run_build_release()
+    print("F6 pressed!")
+    find_and_run_path("build.bat", "RELEASE")
+end
+
+local function run_run_test()
+    print("F7 pressed!")
+    find_and_run_path("test.bat", "RELEASE")
 end
 
 local function run_debug()
     print("Shift F5 pressed!")
-    find_and_run_path("debug.bat")
+    find_and_run_path("debug.bat", "")
 end
 
-vim.keymap.set('n', '<F5>', run_build, { desc = 'Run a build.bat' })
+vim.keymap.set('n', '<F5>', run_build_debug, { desc = 'Run a build.bat' })
+vim.keymap.set('n', '<F6>', run_build_release, { desc = 'Run a build.bat' })
+vim.keymap.set('n', '<F7>', run_run_test, { desc = 'Run test.bat' })
 vim.keymap.set('n', '<S-F5>', run_debug, { desc = 'Run a debug.bat' })

@@ -5,9 +5,9 @@ return {
 		'clangd',
 		'--background-index',
 		'--clang-tidy',
-		'--header-insertion=iwyu',
+		'--header-insertion=never',
 	},
-	filetypes = {'c', 'cpp'},
+	filetypes = {'c'},
 	root_markers = {'compile_commands.json', '.git'},
 	capabilities = capabilities,
 }

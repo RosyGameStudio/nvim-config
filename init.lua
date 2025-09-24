@@ -135,6 +135,9 @@ vim.keymap.set('n', '<A-\'>', '<Cmd>BufferMoveNext<CR>', opts);
 vim.keymap.set('n', '<leader>sh', ':split<CR>', { desc = 'Open terminal in horizontal split' })
 vim.keymap.set('n', '<leader>sv', ':vsplit<CR>', { desc = 'Open terminal in vertical split' })
 
+-- claude
+vim.keymap.set('n', '<leader>cc', '<cmd>ClaudeCode<CR>', { desc = 'Open Claude Code' })
+
 -- telescope
 
 local t_builtin = require('telescope.builtin')
@@ -158,7 +161,8 @@ vim.keymap.set('n', '<leader>ch', t_builtin.command_history, { desc = 'Telescope
 
 --build & debug
 
--- vim.keymap.set('n', '<F5>', ':!build.bat<CR>', { desc = 'Run build.bat' })
+-- vim.keymap.set('n', '<F5>', ':!build.bat RELEASE<CR>', { desc = 'Run build.bat' })
+-- vim.keymap.set('n', '<F6>', ':!build.bat DEBUG<CR>', { desc = 'Run build.bat' })
 -- vim.keymap.set('n', '<S-F5>', ':!debug.bat<CR>', { desc = 'Run debug.bat' })
 
 -- docs
