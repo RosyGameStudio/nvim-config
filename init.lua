@@ -23,8 +23,9 @@ require("neoconf").setup({
 vim.lsp.enable('clangd')
 vim.lsp.enable('slangd')
 vim.lsp.enable('gopls')
-vim.lsp.enable('lua')
-vim.lsp.enable('python')
+vim.lsp.enable('jsonls')
+vim.lsp.enable('lua_ls')
+vim.lsp.enable('pyright')
 
 -- c indentation fixes
 vim.api.nvim_create_autocmd("FileType", {
