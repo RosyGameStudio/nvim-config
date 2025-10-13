@@ -14,6 +14,8 @@ vim.opt.tabstop = 4
 vim.opt.shiftwidth = 4
 vim.opt.softtabstop = 4
 vim.opt.expandtab = true
+vim.opt.number = true
+vim.opt.cursorline = true
 
 vim.opt.termguicolors = true
 require("config.lazy")
@@ -29,52 +31,52 @@ vim.lsp.enable('pyright')
 
 -- c indentation fixes
 vim.api.nvim_create_autocmd("FileType", {
-  pattern = "c",
-  callback = function()
-    vim.opt_local.indentexpr = ""
-    vim.opt_local.cindent = true
-    vim.opt_local.cinoptions = ":0,l1"
-  end
+    pattern = "c",
+    callback = function()
+        vim.opt_local.indentexpr = ""
+        vim.opt_local.cindent = true
+        vim.opt_local.cinoptions = ":0,l1"
+    end
 })
 
 -- Set LSP log level to reduce verbosity
-vim.lsp.set_log_level("warn")  -- Options: "trace", "debug", "info", "warn", "error", "off"
+vim.lsp.set_log_level("warn") -- Options: "trace", "debug", "info", "warn", "error", "off"
 
 -- we don't need perl or ruby
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
 
-vim.diagnostic.config({ jump = { float = true }})
+vim.diagnostic.config({ jump = { float = true } })
 vim.lsp.config('python', {})
 vim.lsp.config('lua', {})
 vim.lsp.config('slangd', {
-  cmd = {'slangd'},
-  filetypes = {'hlsl', 'shaderslang'},
-  root_markers = {'.git'},
-  settings = {
-    slang = {
-      predefinedMacros = {"MY_VALUE_MACRO=1"},
-      inlayHints = {
-        deducedTypes = true,
-        parameterNames = true,
-      }
+    cmd = { 'slangd' },
+    filetypes = { 'hlsl', 'shaderslang' },
+    root_markers = { '.git' },
+    settings = {
+        slang = {
+            predefinedMacros = { "MY_VALUE_MACRO=1" },
+            inlayHints = {
+                deducedTypes = true,
+                parameterNames = true,
+            }
+        }
     }
-  }
 })
 
 vim.lsp.config('gopls', {
-  cmd = {'gopls'},
-  filetypes = {'go', 'gomod', 'gowork', 'gotmpl'},
-  root_markers = {'go.work', 'go.mod', '.git'},
-  settings = {
-    gopls = {
-      analyses = {
-        unusedparams = true,
-      },
-      staticcheck = true,
-      gofumpt = true,
+    cmd = { 'gopls' },
+    filetypes = { 'go', 'gomod', 'gowork', 'gotmpl' },
+    root_markers = { 'go.work', 'go.mod', '.git' },
+    settings = {
+        gopls = {
+            analyses = {
+                unusedparams = true,
+            },
+            staticcheck = true,
+            gofumpt = true,
+        }
     }
-  }
 })
 
 -- general
@@ -90,12 +92,12 @@ vim.keymap.set(
     { desc = 'Reload settings' })
 
 for i = 1, 9 do
-  vim.keymap.set('n', '<leader>' .. i, '<Cmd>BufferGoto ' .. i .. '<CR>', { desc = 'Go to buffer ' .. i })
+    vim.keymap.set('n', '<leader>' .. i, '<Cmd>BufferGoto ' .. i .. '<CR>', { desc = 'Go to buffer ' .. i })
 end
 
 vim.keymap.set('n', '<Esc>', function()
-  vim.cmd('nohl')
-  return '<Esc>'
+    vim.cmd('nohl')
+    return '<Esc>'
 end, { expr = true })
 
 -- lsp
@@ -169,26 +171,26 @@ vim.keymap.set('n', '<leader>ch', t_builtin.command_history, { desc = 'Telescope
 -- docs
 
 vim.keymap.set('n', '<leader>hc', function()
-  vim.fn.system('start https://learn.microsoft.com/en-us/cpp/c-language/?view=msvc-170')
+    vim.fn.system('start https://learn.microsoft.com/en-us/cpp/c-language/?view=msvc-170')
 end, { desc = 'Open C language docs' })
 
 vim.keymap.set('n', '<leader>hv', function()
-  vim.fn.system('start https://registry.khronos.org/vulkan/specs/latest/html/vkspec.html')
+    vim.fn.system('start https://registry.khronos.org/vulkan/specs/latest/html/vkspec.html')
 end, { desc = 'Open C language docs' })
 
 vim.keymap.set('n', '<leader>hb', function()
-  vim.fn.system('start https://learn.microsoft.com/en-us/cpp/build/reference/compiler-command-line-syntax?view=msvc-170')
+    vim.fn.system(
+    'start https://learn.microsoft.com/en-us/cpp/build/reference/compiler-command-line-syntax?view=msvc-170')
 end, { desc = 'Open CL docs' })
 
 vim.keymap.set('n', '<leader>hs', function()
-  vim.fn.system('start https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3220.pdf')
+    vim.fn.system('start https://www.open-std.org/jtc1/sc22/wg14/www/docs/n3220.pdf')
 end, { desc = 'Open C Spec' })
 
 -- autocmds
 
 -- clean trailing whitespace
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
-  pattern = { "*" },
-  command = [[%s/\s\+$//e]],
+    pattern = { "*" },
+    command = [[%s/\s\+$//e]],
 })
-
