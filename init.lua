@@ -18,6 +18,8 @@ vim.opt.number = true
 vim.opt.cursorline = true
 
 vim.opt.termguicolors = true
+vim.g.neovide_scale_factor = 0.8
+-- vim.o.guifont = "Source Code Pro:h12"
 require("config.lazy")
 require("neoconf").setup({
 })
@@ -123,8 +125,11 @@ vim.keymap.set('n', '<leader>nf', ':NvimTreeFindFileToggle<CR>', { desc = 'Toggl
 -- terminal mode
 
 vim.keymap.set('t', '<Esc>', '<C-\\><C-n>')
+vim.keymap.set('n', '<A-i>', '<CMD>lua require("FTerm").toggle()<CR>')
+vim.keymap.set('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>')
 vim.keymap.set('n', '<leader>th', ':split | terminal<CR>', { desc = 'Open terminal in horizontal split' })
 vim.keymap.set('n', '<leader>tv', ':vsplit | terminal<CR>', { desc = 'Open terminal in vertical split' })
+vim.keymap.set('n', '<leader>tf', ':vsplit | terminal<CR>', { desc = 'Open terminal in vertical split' })
 
 -- tabs
 
@@ -180,7 +185,7 @@ end, { desc = 'Open C language docs' })
 
 vim.keymap.set('n', '<leader>hb', function()
     vim.fn.system(
-    'start https://learn.microsoft.com/en-us/cpp/build/reference/compiler-command-line-syntax?view=msvc-170')
+        'start https://learn.microsoft.com/en-us/cpp/build/reference/compiler-command-line-syntax?view=msvc-170')
 end, { desc = 'Open CL docs' })
 
 vim.keymap.set('n', '<leader>hs', function()
