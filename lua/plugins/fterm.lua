@@ -1,8 +1,13 @@
+
 return {
     'numToStr/FTerm.nvim',
-    config = function()
+        config = function()
+	local term_opt = 'cmd'
+	if vim.fn.has('mac') == 1 then
+		term_opt = 'zsh'
+	end
         require('FTerm').setup({
-            cmd = 'cmd',
+            cmd = term_opt,
             border = 'rounded',
             hl = 'Normal',
             dimensions = {
@@ -13,3 +18,4 @@ return {
         })
     end
 }
+
