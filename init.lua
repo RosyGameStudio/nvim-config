@@ -10,12 +10,13 @@ vim.opt.exrc = true
 vim.opt.secure = false
 
 -- tabs
-vim.opt.tabstop = 4
-vim.opt.shiftwidth = 4
-vim.opt.softtabstop = 4
+vim.opt.tabstop = 2
+vim.opt.shiftwidth = 2
+vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.number = true
 vim.opt.cursorline = true
+vim.opt.fileformat = "unix"
 
 vim.opt.termguicolors = true
 vim.g.neovide_scale_factor = 0.8
@@ -171,10 +172,21 @@ vim.keymap.set('n', '<leader>bf', t_builtin.current_buffer_fuzzy_find, { desc = 
 
 vim.keymap.set('n', '<leader>ch', t_builtin.command_history, { desc = 'Telescope command history' })
 
+-- macOS paste (Cmd+V)
 vim.keymap.set('n', '<D-v>', '"+p', { noremap = true })
 vim.keymap.set('i', '<D-v>', '<C-r>+', { noremap = true })
 vim.keymap.set('c', '<D-v>', '<C-r>+', { noremap = true })
 vim.keymap.set('v', '<D-v>', '"+p', { noremap = true })
+
+-- macOS copy (Cmd+C)
+vim.keymap.set('v', '<D-c>', '"+y', { noremap = true })
+
+-- Windows/Linux copy and paste (Ctrl+C, Ctrl+V)
+vim.keymap.set('v', '<C-c>', '"+y', { noremap = true })
+vim.keymap.set('n', '<C-v>', '"+p', { noremap = true })
+vim.keymap.set('v', '<C-v>', '"+p', { noremap = true })
+vim.keymap.set('i', '<C-v>', '<C-r>+', { noremap = true })
+vim.keymap.set('c', '<C-v>', '<C-r>+', { noremap = true })
 
 --build & debug
 
