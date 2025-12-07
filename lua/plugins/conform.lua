@@ -15,6 +15,12 @@ return {
   opts = {
     formatters_by_ft = {
       c = { "clang_format" },
+      cpp = { "clang_format" },
+      lua = { "stylua" },
+      go = { "gofmt" },
+      python = { "black" },
+      json = { "prettier" },
+      markdown = { "prettier" },
     },
     default_format_opts = {
       lsp_format = "fallback",

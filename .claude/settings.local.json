@@ -1,0 +1,14 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(dir \"C:\\Users\\swart\\AppData\\Local\\nvim\\lua\" /s)",
+      "Bash(nvim --headless +\"checkhealth\" +\"w !more\" +qa)",
+      "Bash(nvim:*)",
+      "Bash(winget show:*)",
+      "Bash(where rg:*)",
+      "Bash(winget install:*)"
+    ],
+    "deny": [],
+    "ask": []
+  }
+}

@@ -7,7 +7,7 @@ return {
 		'--clang-tidy',
 		'--header-insertion=never',
 	},
-	filetypes = {'c'},
+	filetypes = {'c', 'cpp', 'objc', 'objcpp', 'cuda'},
 	root_markers = {'compile_commands.json', '.git'},
 	capabilities = capabilities,
 }

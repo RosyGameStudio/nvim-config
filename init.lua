@@ -22,8 +22,6 @@ vim.opt.termguicolors = true
 vim.g.neovide_scale_factor = 0.8
 -- vim.o.guifont = "Source Code Pro:h12"
 require("config.lazy")
-require("neoconf").setup({
-})
 
 vim.lsp.enable('clangd')
 vim.lsp.enable('slangd')
@@ -45,9 +43,10 @@ vim.api.nvim_create_autocmd("FileType", {
 -- Set LSP log level to reduce verbosity
 vim.lsp.set_log_level("warn") -- Options: "trace", "debug", "info", "warn", "error", "off"
 
--- we don't need perl or ruby
+-- disable unused providers
 vim.g.loaded_perl_provider = 0
 vim.g.loaded_ruby_provider = 0
+vim.g.loaded_node_provider = 0
 
 vim.diagnostic.config({ jump = { float = true } })
 vim.lsp.config('python', {})
@@ -115,8 +114,7 @@ vim.keymap.set('n', '<leader>gD', vim.lsp.buf.declaration, { desc = 'Go to defin
 vim.keymap.set('n', '<leader>gr', vim.lsp.buf.references, { desc = 'Go to references' })
 vim.keymap.set('n', '<leader>gi', vim.lsp.buf.implementation, { desc = 'Go to implementation' })
 vim.keymap.set('n', '<leader>gh', vim.lsp.buf.hover, { desc = 'lsp hover' })
-vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
-vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<leader>rn', vim.lsp.buf.rename, { desc = 'Rename symbol' })
 
 -- nvim-tree
 
@@ -134,19 +132,42 @@ vim.keymap.set('t', '<A-i>', '<C-\\><C-n><CMD>lua require("FTerm").toggle()<CR>'
 
 vim.keymap.set('n', '<leader>th', ':split | terminal<CR>', { desc = 'Open terminal in horizontal split' })
 vim.keymap.set('n', '<leader>tv', ':vsplit | terminal<CR>', { desc = 'Open terminal in vertical split' })
-vim.keymap.set('n', '<leader>tf', ':vsplit | terminal<CR>', { desc = 'Open terminal in vertical split' })
 
--- tabs
+-- buffer navigation
 
-vim.keymap.set('n', ';', '<Cmd>BufferPrevious<CR>', opts);
-vim.keymap.set('n', '\'', '<Cmd>BufferNext<CR>', opts);
-vim.keymap.set('n', '<A-;>', '<Cmd>BufferMovePrevious<CR>', opts);
-vim.keymap.set('n', '<A-\'>', '<Cmd>BufferMoveNext<CR>', opts);
+vim.keymap.set('n', '<S-Tab>', '<Cmd>BufferPrevious<CR>', { desc = 'Previous buffer' })
+vim.keymap.set('n', '<Tab>', '<Cmd>BufferNext<CR>', { desc = 'Next buffer' })
+vim.keymap.set('n', '<A-S-Tab>', '<Cmd>BufferMovePrevious<CR>', { desc = 'Move buffer left' })
+vim.keymap.set('n', '<A-Tab>', '<Cmd>BufferMoveNext<CR>', { desc = 'Move buffer right' })
 
 -- split
 
-vim.keymap.set('n', '<leader>sh', ':split<CR>', { desc = 'Open terminal in horizontal split' })
-vim.keymap.set('n', '<leader>sv', ':vsplit<CR>', { desc = 'Open terminal in vertical split' })
+vim.keymap.set('n', '<leader>sh', ':split<CR>', { desc = 'Horizontal split' })
+vim.keymap.set('n', '<leader>sv', ':vsplit<CR>', { desc = 'Vertical split' })
+
+-- window navigation
+
+vim.keymap.set('n', '<C-h>', '<C-w>h', { desc = 'Move to left window' })
+vim.keymap.set('n', '<C-j>', '<C-w>j', { desc = 'Move to down window' })
+vim.keymap.set('n', '<C-k>', '<C-w>k', { desc = 'Move to up window' })
+vim.keymap.set('n', '<C-l>', '<C-w>l', { desc = 'Move to right window' })
+
+-- window resize
+
+vim.keymap.set('n', '<C-Up>', ':resize +2<CR>', { desc = 'Increase window height' })
+vim.keymap.set('n', '<C-Down>', ':resize -2<CR>', { desc = 'Decrease window height' })
+vim.keymap.set('n', '<C-Left>', ':vertical resize -2<CR>', { desc = 'Decrease window width' })
+vim.keymap.set('n', '<C-Right>', ':vertical resize +2<CR>', { desc = 'Increase window width' })
+
+-- better indenting (stay in visual mode)
+
+vim.keymap.set('v', '<', '<gv', { desc = 'Indent left and reselect' })
+vim.keymap.set('v', '>', '>gv', { desc = 'Indent right and reselect' })
+
+-- move lines up/down
+
+vim.keymap.set('v', 'J', ":m '>+1<CR>gv=gv", { desc = 'Move selection down' })
+vim.keymap.set('v', 'K', ":m '<-2<CR>gv=gv", { desc = 'Move selection up' })
 
 -- claude
 vim.keymap.set('n', '<leader>cc', '<cmd>ClaudeCode<CR>', { desc = 'Open Claude Code' })

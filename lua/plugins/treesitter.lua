@@ -6,8 +6,8 @@ return {
 	config = function()
         require("nvim-treesitter.configs").setup({
             prefer_git = false,
-            compilers = { "cl" },
-            ensure_installed = { "c", "cpp", "lua" },
+            compilers = { "clang", "cl" },
+            ensure_installed = { "c", "cpp", "lua", "go", "python", "json", "jsonc", "markdown", "vimdoc" },
 
             highlight = {
                 enable = true,
