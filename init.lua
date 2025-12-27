@@ -16,7 +16,7 @@ vim.opt.softtabstop = 2
 vim.opt.expandtab = true
 vim.opt.number = true
 vim.opt.cursorline = true
-vim.opt.fileformat = "unix"
+vim.opt.fileformats = "unix,dos"
 
 vim.opt.termguicolors = true
 vim.g.neovide_scale_factor = 0.8
@@ -240,4 +240,12 @@ end, { desc = 'Open C Spec' })
 vim.api.nvim_create_autocmd({ "BufWritePre" }, {
   pattern = { "*" },
   command = [[%s/\s\+$//e]],
+})
+
+-- force unix line endings
+vim.api.nvim_create_autocmd("BufWritePre", {
+  pattern = "*",
+  callback = function()
+    vim.opt_local.fileformat = "unix"
+  end,
 })
