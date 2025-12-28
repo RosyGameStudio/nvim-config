@@ -11,7 +11,12 @@ return {
         'L3MON4D3/LuaSnip',
         dependencies = { 'rafamadriz/friendly-snippets' },
         config = function()
-          require('luasnip.loaders.from_vscode').lazy_load()
+          local luasnip_loader = require('luasnip.loaders.from_vscode')
+          -- Load global snippets (friendly-snippets)
+          luasnip_loader.lazy_load()
+          -- Load project-local snippets from .vscode/ or .snippets/
+          local cwd = vim.fn.getcwd()
+          luasnip_loader.lazy_load({ paths = { cwd .. '/.vscode', cwd .. '/.snippets' } })
         end,
       },
       'saadparwaiz1/cmp_luasnip',
