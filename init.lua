@@ -193,6 +193,8 @@ vim.keymap.set('n', '<leader>bf', t_builtin.current_buffer_fuzzy_find, { desc = 
 
 vim.keymap.set('n', '<leader>ch', t_builtin.command_history, { desc = 'Telescope command history' })
 
+vim.keymap.set('n', '<leader>fs', '<cmd>Telescope luasnip<CR>', { desc = 'Telescope luasnip' })
+
 -- macOS paste (Cmd+V)
 vim.keymap.set('n', '<D-v>', '"+p', { noremap = true })
 vim.keymap.set('i', '<D-v>', '<C-r>+', { noremap = true })
