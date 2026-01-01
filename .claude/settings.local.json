@@ -6,7 +6,8 @@
       "Bash(nvim:*)",
       "Bash(winget show:*)",
       "Bash(where rg:*)",
-      "Bash(winget install:*)"
+      "Bash(winget install:*)",
+      "Bash(dir:*)"
     ],
     "deny": [],
     "ask": []

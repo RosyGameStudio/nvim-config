@@ -23,6 +23,7 @@ vim.g.neovide_scale_factor = 0.8
 -- vim.o.guifont = "Source Code Pro:h12"
 require("config.lazy")
 
+vim.lsp.config('clangd', dofile(vim.fn.stdpath('config') .. '/lsp/clangd.lua'))
 vim.lsp.enable('clangd')
 vim.lsp.enable('slangd')
 vim.lsp.enable('gopls')
@@ -96,6 +97,8 @@ vim.keymap.set(
 for i = 1, 9 do
   vim.keymap.set('n', '<leader>' .. i, '<Cmd>BufferGoto ' .. i .. '<CR>', { desc = 'Go to buffer ' .. i })
 end
+
+vim.keymap.set({'n', 'i', 'v'}, '<F1>', '<Nop>', { desc = 'Disable help' })
 
 vim.keymap.set('n', '<Esc>', function()
   vim.cmd('nohl')
